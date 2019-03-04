@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VCS_winform.Forms;
 
 namespace VCS_winform
 {
@@ -16,7 +17,8 @@ namespace VCS_winform
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new LoginForm());
         }
+        static public string serverUrl = "";
     }
 }

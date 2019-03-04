@@ -119,8 +119,8 @@
       <DependentUpon>QuestionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common.cs" />
-    <Compile Include="Modules\Database.cs" />
     <Compile Include="Modules\Load.cs" />
+    <Compile Include="Modules\WebAPI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\AnswerView.cs" />

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VCS_winform.Modules;
 
 namespace VCS_winform.Forms
 {
@@ -15,6 +16,8 @@ namespace VCS_winform.Forms
         public AnswerForm()
         {
             InitializeComponent();
+            Load load = new Load(this);
+            Load += load.GetHandler("answer");
         }
     }
 }
