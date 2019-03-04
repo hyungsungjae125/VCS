@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VCS_winform.Forms;
 using VCS_winform.Modules;
 
 namespace VCS_winform.Views
@@ -101,7 +102,31 @@ namespace VCS_winform.Views
         //로그인 버튼 클릭 이벤트
         private void login_btn_click(object sender, EventArgs e)
         {
+            ht = new Hashtable();
+            ht.Add("id", id_tb.Text);
+            ht.Add("pw", pw_tb.Text);
+            WebAPI api = new WebAPI();
+            string result = api.Post(Program.serverUrl + "api/login", ht);
             
+            if (result=="2" || result == "3")
+            {
+                parentForm.Visible = false;
+                MessageBox.Show("로그인 성공!!");
+
+                targetForm = new MainForm();
+                targetForm.StartPosition = FormStartPosition.CenterParent;
+                targetForm.FormClosed += new FormClosedEventHandler(Exit_click);
+                targetForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("ID 또는 PW가 틀렸습니다.");
+            }
+        }
+
+        private void Exit_click(object sender, FormClosedEventArgs e)
+        {
+            parentForm.Close();
         }
     }
 }

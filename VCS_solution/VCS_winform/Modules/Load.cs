@@ -53,7 +53,12 @@ namespace VCS_winform.Modules
         //--------------------메인화면---------------------------
         private void GetMainLoad(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            target.Size = new Size(900, 600);
+            target.FormBorderStyle = FormBorderStyle.FixedSingle;
+            target.MaximizeBox = false;
+            target.MinimizeBox = false;
+            target.Text = "관리자메인화면";
+            new MainView(target);
         }
         //--------------------로그인화면---------------------------
         private void GetLoginLoad(object sender, EventArgs e)
@@ -68,12 +73,22 @@ namespace VCS_winform.Modules
         //--------------------모집화면---------------------------
         private void GetApplyLoad(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            target.Size = new Size(900, 490);
+            target.FormBorderStyle = FormBorderStyle.None;
+            target.MaximizeBox = false;
+            target.MinimizeBox = false;
+            target.Text = "봉사모집";
+            new ApplyView(target);
         }
         //--------------------모집추가화면---------------------------
         private void GetApplyAddLoad(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            target.Size = new Size(800, 700);
+            target.FormBorderStyle = FormBorderStyle.FixedSingle;
+            target.MaximizeBox = false;
+            target.MinimizeBox = false;
+            target.Text = "봉사모집";
+            new ApplyAddView(target);
         }
         //--------------------모집수정화면---------------------------
         private void GetApplyEditLoad(object sender, EventArgs e)
@@ -83,7 +98,12 @@ namespace VCS_winform.Modules
         //--------------------봉사인증화면---------------------------
         private void GetCertificationLoad(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            target.Size = new Size(900, 490);
+            target.FormBorderStyle = FormBorderStyle.None;
+            target.MaximizeBox = false;
+            target.MinimizeBox = false;
+            target.Text = "외부봉사인증";
+            new CertificationView(target);
         }
         //--------------------봉사인증상세화면---------------------------
         private void GetCertificationDetailLoad(object sender, EventArgs e)
@@ -93,7 +113,12 @@ namespace VCS_winform.Modules
         //--------------------공지화면---------------------------
         private void GetNoticeLoad(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            target.Size = new Size(900, 490);
+            target.FormBorderStyle = FormBorderStyle.None;
+            target.MaximizeBox = false;
+            target.MinimizeBox = false;
+            target.Text = "공지";
+            new NoticeView(target);
         }
         //--------------------공지추가화면---------------------------
         private void GetNoticeAddLoad(object sender, EventArgs e)
@@ -108,7 +133,12 @@ namespace VCS_winform.Modules
         //--------------------질문화면---------------------------
         private void GetQuestionLoad(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            target.Size = new Size(900, 490);
+            target.FormBorderStyle = FormBorderStyle.None;
+            target.MaximizeBox = false;
+            target.MinimizeBox = false;
+            target.Text = "질문목록";
+            new QuestionView(target);
         }
         //--------------------답변화면---------------------------
         private void GetAnswerLoad(object sender, EventArgs e)
