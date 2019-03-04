@@ -107,9 +107,9 @@ namespace VCS_winform.Modules
             listView.Size = (Size)hashtable["size"];
             listView.BackColor = (Color)hashtable["color"];
             listView.Name = hashtable["name"].ToString();
-            listView.CheckBoxes = true;
             listView.MouseClick += (MouseEventHandler)hashtable["click"];
             listView.Font = new Font("맑은 고딕", 14, FontStyle.Bold);
+            listView.FullRowSelect = true;
             parentDomain.Controls.Add(listView);
             return listView;
         }

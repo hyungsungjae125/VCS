@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VCS_winform.Forms;
 using VCS_winform.Modules;
+using static System.Windows.Forms.ListView;
 
 namespace VCS_winform.Views
 {
@@ -36,11 +37,12 @@ namespace VCS_winform.Views
             ht.Add("click", (MouseEventHandler)listView_click);
             apply_lv = common.GetListView(ht, parentForm);
             apply_lv.Columns.Add("번호", 55, HorizontalAlignment.Center);
-            apply_lv.Columns.Add("제목", 400, HorizontalAlignment.Center);
+            apply_lv.Columns.Add("제목", 200, HorizontalAlignment.Center);
+            apply_lv.Columns.Add("작성일", 400, HorizontalAlignment.Center);
             apply_lv.Columns.Add("작성자", 200, HorizontalAlignment.Center);
-            apply_lv.Columns.Add("작성일", 200, HorizontalAlignment.Center);
             apply_lv.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             apply_lv.ColumnWidthChanging += ListView_ColumnWidthChanging;
+            apply_lv.MouseClick += Apply_lv_MouseClick;
 
             //새모집등록 버튼 추가
             ht = new Hashtable();
@@ -56,6 +58,14 @@ namespace VCS_winform.Views
             getList();
         }
 
+        private void Apply_lv_MouseClick(object sender, MouseEventArgs e)
+        {
+            ListView listView = (ListView)sender;
+            SelectedListViewItemCollection col = listView.SelectedItems;
+            ListViewItem item = col[0];
+            MessageBox.Show(item.SubItems[0].Text + "선택");
+        }
+
         private void applyadd_btn_click(object sender, EventArgs e)
         {
             // form 초기화
@@ -64,11 +74,16 @@ namespace VCS_winform.Views
             targetForm.StartPosition = parentForm.StartPosition;
             // form 호출
             targetForm.ShowDialog();
+            getList();
         }
 
         private void getList()
         {
-            
+            WebAPI api = new WebAPI();
+            if (!api.GetListView(Program.serverUrl + "api/applylist", apply_lv))
+            {
+                MessageBox.Show("리스트 불러오기 실패");
+            }
         }
 
         private void ListView_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
