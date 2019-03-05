@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VCS_winform.Forms;
 using VCS_winform.Modules;
+using static System.Windows.Forms.ListView;
 
 namespace VCS_winform.Views
 {
@@ -13,7 +16,7 @@ namespace VCS_winform.Views
     {
         private Common common;
         private Form parentForm, targetForm;
-
+        private ListView apply_lv;
         private Hashtable ht;
 
         public CertificationView(Form parentForm)
@@ -25,7 +28,52 @@ namespace VCS_winform.Views
 
         private void getView()
         {
+            ht = new Hashtable();
+            ht.Add("color", Color.White);
+            ht.Add("name", "listView");
+            ht.Add("point", new Point(10, 20));
+            ht.Add("size", new Size(860, 340));
+            ht.Add("click", (MouseEventHandler)listView_click);
+            apply_lv = common.GetListView(ht, parentForm);
+            apply_lv.Columns.Add("번호", 105, HorizontalAlignment.Center);
+            
+            apply_lv.Columns.Add("작성자", 250, HorizontalAlignment.Center);
+            apply_lv.Columns.Add("작성일", 500, HorizontalAlignment.Center);
+            apply_lv.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            apply_lv.ColumnWidthChanging += ListView_ColumnWidthChanging;
+            
+            getList();
+        }
 
+        private void getList()
+        {
+            WebAPI api = new WebAPI();
+            if (!api.GetListView(Program.serverUrl + "api/certificationlist", apply_lv))
+            {
+                MessageBox.Show("리스트 불러오기 실패");
+            }
+        }
+
+        private void ListView_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
+        {
+            e.NewWidth = apply_lv.Columns[e.ColumnIndex].Width;
+            e.Cancel = true;
+        }
+
+        private void listView_click(object sender, EventArgs e)
+        {
+            ListView listView = (ListView)sender;
+            SelectedListViewItemCollection col = listView.SelectedItems;
+            ListViewItem item = col[0];
+            //MessageBox.Show(item.SubItems[0].Text + "선택");
+
+            // form 초기화
+            if (targetForm != null) targetForm.Dispose();
+            targetForm = new CertificationDetailForm(Convert.ToInt32(item.SubItems[0].Text));
+            targetForm.StartPosition = parentForm.StartPosition;
+            // form 호출
+            targetForm.ShowDialog();
+            getList();
         }
     }
 }

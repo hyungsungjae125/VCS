@@ -19,5 +19,12 @@ namespace VCS_winform.Forms
             Load load = new Load(this);
             Load += load.GetHandler("noticeedit");
         }
+
+        public NoticeEditForm(int nNo)
+        {
+            InitializeComponent();
+            Load load = new Load(this,nNo);
+            Load += load.GetHandler("noticeedit");
+        }
     }
 }

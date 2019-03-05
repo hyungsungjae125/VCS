@@ -19,5 +19,11 @@ namespace VCS_winform.Forms
             Load load = new Load(this);
             Load += load.GetHandler("applyedit");
         }
+        public ApplyEditForm(int vNo)
+        {
+            InitializeComponent();
+            Load load = new Load(this,vNo);
+            Load += load.GetHandler("applyedit");
+        }
     }
 }

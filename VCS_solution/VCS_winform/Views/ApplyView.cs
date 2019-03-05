@@ -42,7 +42,6 @@ namespace VCS_winform.Views
             apply_lv.Columns.Add("작성자", 200, HorizontalAlignment.Center);
             apply_lv.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             apply_lv.ColumnWidthChanging += ListView_ColumnWidthChanging;
-            apply_lv.MouseClick += Apply_lv_MouseClick;
 
             //새모집등록 버튼 추가
             ht = new Hashtable();
@@ -58,13 +57,6 @@ namespace VCS_winform.Views
             getList();
         }
 
-        private void Apply_lv_MouseClick(object sender, MouseEventArgs e)
-        {
-            ListView listView = (ListView)sender;
-            SelectedListViewItemCollection col = listView.SelectedItems;
-            ListViewItem item = col[0];
-            MessageBox.Show(item.SubItems[0].Text + "선택");
-        }
 
         private void applyadd_btn_click(object sender, EventArgs e)
         {
@@ -94,7 +86,18 @@ namespace VCS_winform.Views
 
         private void listView_click(object sender,EventArgs e)
         {
-           
+            ListView listView = (ListView)sender;
+            SelectedListViewItemCollection col = listView.SelectedItems;
+            ListViewItem item = col[0];
+            //MessageBox.Show(item.SubItems[0].Text + "선택");
+            
+            // form 초기화
+            if (targetForm != null) targetForm.Dispose();
+            targetForm = new ApplyEditForm(Convert.ToInt32(item.SubItems[0].Text));
+            targetForm.StartPosition = parentForm.StartPosition;
+            // form 호출
+            targetForm.ShowDialog();
+            getList();
         }
     }
 }

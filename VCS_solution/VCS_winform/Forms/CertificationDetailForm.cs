@@ -19,5 +19,12 @@ namespace VCS_winform.Forms
             Load load = new Load(this);
             Load += load.GetHandler("certificationdetail");
         }
+
+        public CertificationDetailForm(int oNo)
+        {
+            InitializeComponent();
+            Load load = new Load(this,oNo);
+            Load += load.GetHandler("certificationdetail");
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace VCS_winform
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new AnswerForm());
         }
         static public string serverUrl = "http://192.168.3.19/";
     }

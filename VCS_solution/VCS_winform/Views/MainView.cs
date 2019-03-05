@@ -56,7 +56,7 @@ namespace VCS_winform.Views
             ht.Add("point", new Point(448, 10));
             ht.Add("color", Color.LightGray);
             ht.Add("name", "notice_btn");
-            ht.Add("text", "봉사 모집");
+            ht.Add("text", "공지");
             ht.Add("click", (EventHandler)menu_btn_click);
             notice_btn = common.GetButton(ht, parentForm);
             //answer 버튼 추가

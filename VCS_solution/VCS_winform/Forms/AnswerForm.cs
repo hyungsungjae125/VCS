@@ -19,5 +19,12 @@ namespace VCS_winform.Forms
             Load load = new Load(this);
             Load += load.GetHandler("answer");
         }
+
+        public AnswerForm(int qNo)
+        {
+            InitializeComponent();
+            Load load = new Load(this,qNo);
+            Load += load.GetHandler("answer");
+        }
     }
 }
