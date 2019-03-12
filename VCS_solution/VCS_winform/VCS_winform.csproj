@@ -126,6 +126,7 @@
     <Compile Include="Modules\WebAPI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserInfo.cs" />
     <Compile Include="Views\AnswerView.cs" />
     <Compile Include="Views\ApplyAddView.cs" />
     <Compile Include="Views\ApplyEditView.cs" />
@@ -138,6 +139,9 @@
     <Compile Include="Views\NoticeEditView.cs" />
     <Compile Include="Views\NoticeView.cs" />
     <Compile Include="Views\QuestionView.cs" />
+    <EmbeddedResource Include="Forms\AnswerForm.resx">
+      <DependentUpon>AnswerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -146,6 +150,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -161,6 +166,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -344,12 +346,122 @@ namespace VCS_winform.Views
             ht.Add("text", "취소");
             ht.Add("click", (EventHandler)cancel_btn_click);
             cancel_btn = common.GetButton(ht, parentForm);
-            
+
+            VolunteerDetail();
+        }
+        
+        private void VolunteerDetail()
+        {
+            WebAPI api = new WebAPI();
+
+            ht = new Hashtable();
+            ht.Add("vno", vNo);
+            string result = api.Post(Program.serverUrl + "api/applylistdetail", ht);
+
+            ArrayList list = JsonConvert.DeserializeObject<ArrayList>(result);
+
+            JObject jo = (JObject)list[0];
+            if (Convert.ToInt32(jo["mNo"]) != Program.userInfo.MNo)
+            {
+                name_tb.Enabled = false;
+                city_combo.Enabled = false;
+                gu_combo.Enabled = false;
+                place_tb.Enabled = false;
+                field_combo.Enabled = false;
+                startcol_dt.Enabled = false;
+                endcol_dt.Enabled = false;
+                startvol_dt.Enabled = false;
+                endvol_dt.Enabled = false;
+                collectnum_tb.Enabled = false;
+                time_tb.Enabled = false;
+                mon_cb.Enabled = false;
+                thu_cb.Enabled = false;
+                wed_cb.Enabled = false;
+                thur_cb.Enabled = false;
+                fri_cb.Enabled = false;
+                sat_cb.Enabled = false;
+                sun_cb.Enabled = false;
+                object_combo.Enabled = false;
+                contents_tb.Enabled = false;
+
+                delete_btn.Enabled = false;
+                ok_btn.Enabled = false;
+            }
+            string name = jo["vName"].ToString();
+            string contents = jo["vContents"].ToString();
+            string city = jo["vCity"].ToString();
+            string gu = jo["vGu"].ToString();
+            string field = jo["vField"].ToString();
+            string place = jo["vPlace"].ToString();
+            string startcol = jo["vStartcollect"].ToString();
+            string endcol = jo["vEndcollect"].ToString();
+            string startvol = jo["vStartvol"].ToString();
+            string endvol = jo["vEndvol"].ToString();
+            int collectnum = Convert.ToInt32(jo["vCollectnum"]);
+            int nownum = Convert.ToInt32(jo["vNownum"]);
+            int time = Convert.ToInt32(jo["vTime"]);
+            string week = jo["vWeek"].ToString();
+            string vobject = jo["vObject"].ToString();
+            name_tb.Text = name;
+            contents_tb.Text = contents;
+            city_combo.Text = city;
+            gu_combo.Text = gu;
+            field_combo.Text = field;
+            place_tb.Text = place;
+            startcol_dt.Value = DateTime.Parse(startcol);
+            endcol_dt.Value = DateTime.Parse(endcol);
+            startvol_dt.Value = DateTime.Parse(startvol);
+            endvol_dt.Value = DateTime.Parse(endvol);
+            collectnum_tb.Text = collectnum.ToString();
+            time_tb.Text = time.ToString();
+            object_combo.Text = vobject;
+            if(week.Contains("월"))
+            {
+                mon_cb.Checked = true;
+            }
+            if (week.Contains("화"))
+            {
+                thu_cb.Checked = true;
+            }
+            if (week.Contains("수"))
+            {
+                wed_cb.Checked = true;
+            }
+            if (week.Contains("목"))
+            {
+                thur_cb.Checked = true;
+            }
+            if (week.Contains("금"))
+            {
+                fri_cb.Checked = true;
+            }
+            if (week.Contains("토"))
+            {
+                sat_cb.Checked = true;
+            }
+            if (week.Contains("일"))
+            {
+                sun_cb.Checked = true;
+            }
         }
 
         private void delete_btn_click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            WebAPI api = new WebAPI();
+
+            ht = new Hashtable();
+            ht.Add("mno", Program.userInfo.MNo);
+            ht.Add("vno", vNo);
+            string result = api.Post(Program.serverUrl + "api/volunteerlistdelete", ht);
+            if (result == "1")
+            {
+                MessageBox.Show("모집삭제!!");
+            }
+            else if(result == "0")
+            {
+                MessageBox.Show("권한이 없습니다.");
+            }
+            parentForm.Close();
         }
 
         private void cancel_btn_click(object sender, EventArgs e)
@@ -362,7 +474,8 @@ namespace VCS_winform.Views
             WebAPI api = new WebAPI();
 
             ht = new Hashtable();
-            ht.Add("mno", 1);
+            ht.Add("vno", vNo);
+            ht.Add("mno", Program.userInfo.MNo);
             ht.Add("name", name_tb.Text);
             ht.Add("contents", contents_tb.Text);
             ht.Add("city", city_combo.Text);
@@ -416,8 +529,15 @@ namespace VCS_winform.Views
             ht.Add("week", week);
             ht.Add("vobject", object_combo.Text);
             ht.Add("count", weekcount);
-            string result = api.Post(Program.serverUrl + "api/volunteerlistinsert", ht);
-            MessageBox.Show(result);
+            string result = api.Post(Program.serverUrl + "api/volunteerlistupdate", ht);
+            if(result=="true")
+            {
+                MessageBox.Show("모집수정완료!!");
+            }
+            else if (result == "false")
+            {
+                MessageBox.Show("권한이 없습니다");
+            }
             parentForm.Close();
         }
     }

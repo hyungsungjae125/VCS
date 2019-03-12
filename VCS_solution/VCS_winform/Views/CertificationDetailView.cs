@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -122,6 +126,33 @@ namespace VCS_winform.Views
             ht.Add("text", "취소");
             ht.Add("click", (EventHandler)cancel_btn_click);
             cancel_btn = common.GetButton(ht, parentForm);
+
+            CertificationDetail();
+        }
+
+        private void CertificationDetail()
+        {
+            WebAPI api = new WebAPI();
+
+            ht = new Hashtable();
+            ht.Add("ono", oNo);
+            string result = api.Post(Program.serverUrl + "api/certificationdetail", ht);
+
+            ArrayList list = JsonConvert.DeserializeObject<ArrayList>(result);
+
+            JObject jo = (JObject)list[0];
+
+            if (Program.userInfo.DNo != 3)
+            {
+                ok_btn.Enabled = false;
+            }
+
+            name_tb.Text = jo["mName"].ToString();
+            addr_tb.Text = jo["mAddr"].ToString();
+            number_tb.Text = jo["mNumber"].ToString();
+            WebClient wc = new WebClient();
+            if(jo["oUrl"].ToString().Contains("."))
+            image_pb.Image = Image.FromStream(wc.OpenRead(Program.serverUrl + jo["oUrl"].ToString()));
         }
 
         private void cancel_btn_click(object sender, EventArgs e)
@@ -131,7 +162,17 @@ namespace VCS_winform.Views
 
         private void ok_btn_click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            WebAPI api = new WebAPI();
+
+            ht = new Hashtable();
+            ht.Add("ono", oNo);
+            ht.Add("mno", Program.userInfo.MNo);
+            string result = api.Post(Program.serverUrl + "api/certificationok", ht);
+            if (result == "1")
+                MessageBox.Show("인증완료..!!");
+            else
+                MessageBox.Show("권한이 없습니다");
+            parentForm.Close();
         }
     }
 }

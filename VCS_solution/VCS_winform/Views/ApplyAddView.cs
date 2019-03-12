@@ -121,7 +121,7 @@ namespace VCS_winform.Views
             ht.Add("point", new Point(110, 150));
             ht.Add("name", "startcol_dt");
             startcol_dt = common.GetDateTimePicker(ht, parentForm);
-            startcol_dt.Value = DateTime.Today.AddMonths(-1);
+            startcol_dt.Value = DateTime.Today;
             startcol_dt.Format = DateTimePickerFormat.Custom;
             startcol_dt.CustomFormat = "yyyy-MM-dd";
 
@@ -130,7 +130,7 @@ namespace VCS_winform.Views
             ht.Add("point", new Point(320, 150));
             ht.Add("name", "endcol_dt");
             endcol_dt = common.GetDateTimePicker(ht, parentForm);
-            endcol_dt.Value = DateTime.Today.AddMonths(-1);
+            endcol_dt.Value = DateTime.Today;
             endcol_dt.Format = DateTimePickerFormat.Custom;
             endcol_dt.CustomFormat = "yyyy-MM-dd";
 
@@ -159,7 +159,7 @@ namespace VCS_winform.Views
             ht.Add("point", new Point(110, 190));
             ht.Add("name", "startvol_dt");
             startvol_dt = common.GetDateTimePicker(ht, parentForm);
-            startvol_dt.Value = DateTime.Today.AddMonths(-1);
+            startvol_dt.Value = DateTime.Today;
             startvol_dt.Format = DateTimePickerFormat.Custom;
             startvol_dt.CustomFormat = "yyyy-MM-dd";
 
@@ -168,7 +168,7 @@ namespace VCS_winform.Views
             ht.Add("point", new Point(320, 190));
             ht.Add("name", "endvol_dt");
             endvol_dt = common.GetDateTimePicker(ht, parentForm);
-            endvol_dt.Value = DateTime.Today.AddMonths(-1);
+            endvol_dt.Value = DateTime.Today;
             endvol_dt.Format = DateTimePickerFormat.Custom;
             endvol_dt.CustomFormat = "yyyy-MM-dd";
 
@@ -338,7 +338,7 @@ namespace VCS_winform.Views
             WebAPI api = new WebAPI();
 
             ht = new Hashtable();
-            ht.Add("mno", 1);
+            ht.Add("mno", Program.userInfo.MNo);
             ht.Add("name",name_tb.Text);
             ht.Add("contents", contents_tb.Text);
             ht.Add("city", city_combo.Text);

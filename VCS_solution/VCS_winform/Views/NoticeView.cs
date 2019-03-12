@@ -37,7 +37,7 @@ namespace VCS_winform.Views
             ht.Add("click", (MouseEventHandler)listView_click);
             notice_lv = common.GetListView(ht, parentForm);
             notice_lv.Columns.Add("번호", 50, HorizontalAlignment.Center);
-            notice_lv.Columns.Add("제목", 335, HorizontalAlignment.Center);
+            notice_lv.Columns.Add("공지제목", 335, HorizontalAlignment.Center);
             notice_lv.Columns.Add("작성자", 150, HorizontalAlignment.Center);
             notice_lv.Columns.Add("작성일", 250, HorizontalAlignment.Center);
             notice_lv.Columns.Add("조회수", 70, HorizontalAlignment.Center);

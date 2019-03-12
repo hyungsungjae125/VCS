@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VCS_winform.Modules;
+using VCS_winform.Properties;
 
 namespace VCS_winform.Views
 {
@@ -18,6 +20,9 @@ namespace VCS_winform.Views
         private TextBox name_tb, file_tb, contents_tb;
         private Hashtable ht;
         private Label name_lb, file_lb, contents_lb;
+        private Image file;
+        private string fileName;
+        private string ext;
 
         public NoticeAddView(Form parentForm)
         {
@@ -72,6 +77,8 @@ namespace VCS_winform.Views
             ht.Add("text", "");
             ht.Add("click", (EventHandler)file_add_btn_click);
             file_add_btn = common.GetButton(ht, parentForm);
+            file_add_btn.BackgroundImage = Resources.folder;
+            file_add_btn.BackgroundImageLayout = ImageLayout.Stretch;
 
             ht = new Hashtable();
             ht.Add("font", new Font("맑은 고딕", 12, FontStyle.Bold));
@@ -82,6 +89,8 @@ namespace VCS_winform.Views
             ht.Add("text", "");
             ht.Add("click", (EventHandler)file_delete_btn_click);
             file_delete_btn = common.GetButton(ht, parentForm);
+            file_delete_btn.BackgroundImage = Resources.x;
+            file_delete_btn.BackgroundImageLayout = ImageLayout.Stretch;
             //-----------------------------------------------------------------
             ht = new Hashtable();
             ht.Add("width", 50);
@@ -125,12 +134,29 @@ namespace VCS_winform.Views
 
         private void file_delete_btn_click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (file != null)
+                file.Dispose();
+
+            file_tb.Text = "";
         }
 
         private void file_add_btn_click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "Images only. |*.png; *.jpg; *.jpeg; *.gif;";
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFile.FileName;
+
+                file = Image.FromFile(filePath);
+
+                fileName = openFile.SafeFileName;
+                file_tb.Text = fileName;
+                ext = fileName.Substring(fileName.LastIndexOf("."));
+
+            }
+            else { }
         }
 
         private void cancel_btn_click(object sender, EventArgs e)
@@ -140,7 +166,26 @@ namespace VCS_winform.Views
 
         private void ok_btn_click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            WebAPI api = new WebAPI();
+
+            ht = new Hashtable();
+            ht.Add("mNo", Program.userInfo.MNo);
+            ht.Add("nTitle", name_tb.Text);
+            ht.Add("nContents", contents_tb.Text);
+            ht.Add("fileName", fileName);
+            MemoryStream ms = new MemoryStream();
+            file.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            byte[] imgData = ms.ToArray();
+
+            string fileData = Convert.ToBase64String(imgData);
+            ht.Add("fileData", fileData);
+
+            string result = api.Post(Program.serverUrl + "api/noticeinsert", ht);
+            if (result=="1")
+            {
+                MessageBox.Show("공지등록!!");
+            }
+            parentForm.Close();
         }
     }
 }

@@ -37,7 +37,7 @@ namespace VCS_winform.Views
             ht.Add("click", (MouseEventHandler)listView_click);
             apply_lv = common.GetListView(ht, parentForm);
             apply_lv.Columns.Add("번호", 55, HorizontalAlignment.Center);
-            apply_lv.Columns.Add("제목", 200, HorizontalAlignment.Center);
+            apply_lv.Columns.Add("모집제목", 200, HorizontalAlignment.Center);
             apply_lv.Columns.Add("작성일", 400, HorizontalAlignment.Center);
             apply_lv.Columns.Add("작성자", 200, HorizontalAlignment.Center);
             apply_lv.HeaderStyle = ColumnHeaderStyle.Nonclickable;

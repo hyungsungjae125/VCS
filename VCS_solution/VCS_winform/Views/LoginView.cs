@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,8 +18,8 @@ namespace VCS_winform.Views
         private Common common;
         private Form parentForm, targetForm;
         private Button login_btn;
-        private TextBox id_tb,pw_tb;
-        private Label head_lb,question_lb,id_lb,pw_lb;
+        private TextBox id_tb, pw_tb;
+        private Label head_lb, question_lb, id_lb, pw_lb;
         private Hashtable ht;
 
         public LoginView(Form parentForm)
@@ -32,7 +34,7 @@ namespace VCS_winform.Views
         {
             // 상단 머리말 라벨 추가
             ht = new Hashtable();
-            ht.Add("width",400);
+            ht.Add("width", 400);
             ht.Add("point", new Point(250, 50));
             ht.Add("color", Color.Black);
             ht.Add("name", "head_lb");
@@ -60,7 +62,7 @@ namespace VCS_winform.Views
             ht.Add("text", "ID :");
             ht.Add("font", new Font("맑은 고딕", 18, FontStyle.Bold));
             id_lb = common.GetLabel(ht, parentForm);
-            
+
             //pw라벨
             ht = new Hashtable();
             ht.Add("width", 50);
@@ -70,7 +72,7 @@ namespace VCS_winform.Views
             ht.Add("text", "PW :");
             ht.Add("font", new Font("맑은 고딕", 18, FontStyle.Bold));
             pw_lb = common.GetLabel(ht, parentForm);
-   
+
             //id 텍스트 박스 추가
             ht = new Hashtable();
             ht.Add("width", 400);
@@ -107,12 +109,19 @@ namespace VCS_winform.Views
             ht.Add("pw", pw_tb.Text);
             WebAPI api = new WebAPI();
             string result = api.Post(Program.serverUrl + "api/login", ht);
-            
-            if (result=="2" || result == "3")
-            {
-                parentForm.Visible = false;
-                MessageBox.Show("로그인 성공!!");
 
+            ArrayList list = JsonConvert.DeserializeObject<ArrayList>(result);
+
+            JObject jo = (JObject)list[0];
+            
+            int mNo = Convert.ToInt32(jo["mNo"]);
+            int dNo = Convert.ToInt32(jo["dNo"]);
+
+            if (dNo == 2 || dNo == 3)
+            {
+                MessageBox.Show("로그인 성공!!");
+                Program.userInfo = new UserInfo(mNo, dNo);
+                parentForm.Visible = false;
                 targetForm = new MainForm();
                 targetForm.StartPosition = FormStartPosition.CenterParent;
                 targetForm.FormClosed += new FormClosedEventHandler(Exit_click);

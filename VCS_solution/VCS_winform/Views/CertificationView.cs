@@ -17,13 +17,34 @@ namespace VCS_winform.Views
         private Common common;
         private Form parentForm, targetForm;
         private ListView apply_lv;
+        private Label lb;
         private Hashtable ht;
 
         public CertificationView(Form parentForm)
         {
             this.parentForm = parentForm;
             common = new Common();
-            getView();
+            if (Program.userInfo.DNo == 3)
+            {
+                getView();
+            }
+            else
+            {
+                getX();
+            }
+        }
+
+        private void getX()
+        {
+            ht = new Hashtable();
+            ht.Add("width", 200);
+            ht.Add("point", new Point(320, 180));
+            ht.Add("color", Color.Black);
+            ht.Add("name", "name_lb");
+            ht.Add("text", "X 권한이 없습니다 X");
+            ht.Add("font", new Font("맑은 고딕", 20, FontStyle.Bold));
+            lb = common.GetLabel(ht, parentForm);
+            lb.TextAlign = ContentAlignment.MiddleRight;
         }
 
         private void getView()
@@ -47,10 +68,13 @@ namespace VCS_winform.Views
 
         private void getList()
         {
-            WebAPI api = new WebAPI();
-            if (!api.GetListView(Program.serverUrl + "api/certificationlist", apply_lv))
+            if (Program.userInfo.DNo == 3)
             {
-                MessageBox.Show("리스트 불러오기 실패");
+                WebAPI api = new WebAPI();
+                if (!api.GetListView(Program.serverUrl + "api/certificationlist", apply_lv))
+                {
+                    MessageBox.Show("리스트 불러오기 실패");
+                }
             }
         }
 
