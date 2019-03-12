@@ -1,0 +1,172 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+}
+h1,h2,h3,h4,h5,h6,p,ul {
+    margin: 0;
+    padding: 0;
+}
+
+.headfoot {
+    height: 80px;
+}
+
+#header {
+}
+
+#footer {
+    background-color: antiquewhite;
+}
+
+#contents {
+    background-color: beige;
+    min-height: calc(100vh - 130px);
+}
+
+#header #logo {
+    height: 100%;
+    width: auto;
+}
+
+#header #right {
+    width: 30vw;
+    height: 100%;
+    float: right;
+}
+
+#nav {
+    border: none;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#nav ul {
+    background: orange;
+    list-style: none;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+}
+
+#nav li {
+    float: left;
+    padding: 0px;
+}
+
+#nav li a {
+    background-color: orange;
+    color: white;
+    display: block;
+    font-weight: normal;
+    line-height: 50px;
+    margin: 0px;
+    padding: 0px 25px;
+    text-align: center;
+    text-decoration: none;
+}
+
+#nav li a:hover, #menubar ul li:hover a {
+    background: darkorange /*#FFBB00*/;
+    color: azure;
+    text-decoration: none;
+}
+
+#nav li ul {
+    background: orange;
+    display: none;
+    height: auto;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    position: absolute;
+    width: 200px;
+    z-index: 200; /*top:1em left:0*/
+}
+
+#nav li:hover ul {
+    display: block;
+}
+
+#nav li li {
+    background: orange;
+    display: block;
+    float: none;
+    margin: 0px;
+    padding: 0px;
+    width: 200px;
+}
+
+#nav li:hover li a {
+    background: darkorange /*#FFBB00*/;
+}
+
+#nav li ul a {
+    display: block;
+    height: 50px;
+    font-size: 12px;
+    font-style: normal;
+    margin: 0px;
+    padding: 0px 10px 0px 15px;
+    text-align: left;
+}
+
+#nav li ul a:hover, .menubar li ul li:hover a {
+    background: darkorange /*#FFBB00*/;
+    border: 0px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#nav p {
+    clear: left;
+}
+
+#search ul {
+    padding: 0px;
+    margin: 0;
+    height: 100%;
+}
+
+#search li {
+    background: beige;
+    float: left;
+    width: calc(100% / 2);
+    height: 50%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#notice ul {
+    padding: 20px;
+    margin: 0;
+    height: calc(100% - 40px);
+}
+
+#notice li {
+    margin: 10px;
+    background: beige;
+    float: left;
+    width: calc(100% / 3 - 20px);
+    height: calc(100% - 20px);
+}
+
+.btn1 {
+    width:;
+    height: 30%;
+    float: right;
+    margin-top: 50px;
+    margin-right: 10%;
+}
+
+#contetns {
+    height: 100vh;
+}
+
+@media screen and (max-width: 550px) {
+    #nav li {
+        width: 100%;
+    }
+}

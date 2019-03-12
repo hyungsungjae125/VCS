@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VCS 봉사인증사이트</title>
+    <link rel="stylesheet" href="~/css/common.css" />
+    <script type="text/javascript" src="~/js/common.js"></script>
+</head>
+<body>
+    <header class="headfoot" id="header">
+        <a href="/"><img src="~/img/VCS_log.png" id="logo"></a>
+        <div id="right">
+            <button class="btn1" id="join">회원가입</button>
+            <button class="btn1" id="login">로그인</button>
+        </div>
+    </header>
+    <div id="nav">
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="#">봉사안내</a>
+                <ul>
+                    <li><a href="/Volunteer/">- 포털소개</a></li>
+                    <li><a href="/Volunteer/Sub1">- 포털 이용 가이드</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">봉사신청</a>
+                <ul>
+                    <li><a href="#">- 봉사신청하기</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">봉사조회</a>
+                <ul>
+                    <li><a href="#">- 모집중인 봉사조회</a></li>
+                    <li><a href="#">- 종료된 봉사조회</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">봉사인증</a>
+                <ul>
+                    <li><a href="#">- 인증서발급</a></li>
+                    <li><a href="#">- 외부봉사인증</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="contents">@RenderBody()</div>
+    <footer class="headfoot" id="footer">
+        &nbsp;&nbsp;&nbsp;본 페이지에 게시된 이메일주소가 자동 수집되는것을 거부하며,
+        <br>&nbsp;&nbsp;이를 위반시 정보통신망법에 의해 처벌됨을 유념하시기 바랍니다.
+        <br>&nbsp;&nbsp;ⓒ goodee Academy .All Rights reserved.
+    </footer>
+</body>
+</html>

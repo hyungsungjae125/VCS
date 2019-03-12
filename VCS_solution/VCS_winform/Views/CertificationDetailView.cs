@@ -20,8 +20,8 @@ namespace VCS_winform.Views
         private Form parentForm, targetForm;
         private int oNo = 0;
         private Button ok_btn, cancel_btn;
-        private TextBox name_tb, number_tb, addr_tb;
-        private Label name_lb, number_lb, addr_lb;
+        private TextBox name_tb, number_tb, addr_tb,time_tb;
+        private Label name_lb, number_lb, addr_lb,time_lb;
         private PictureBox image_pb;
         private Hashtable ht;
 
@@ -72,6 +72,16 @@ namespace VCS_winform.Views
             ht.Add("font", new Font("맑은 고딕", 12, FontStyle.Regular));
             addr_lb = common.GetLabel(ht, parentForm);
             addr_lb.TextAlign = ContentAlignment.MiddleRight;
+
+            ht = new Hashtable();
+            ht.Add("width", 50);
+            ht.Add("point", new Point(580, 330));
+            ht.Add("color", Color.Black);
+            ht.Add("name", "time_lb");
+            ht.Add("text", "적용시간");
+            ht.Add("font", new Font("맑은 고딕", 12, FontStyle.Regular));
+            time_lb = common.GetLabel(ht, parentForm);
+            time_lb.TextAlign = ContentAlignment.MiddleRight;
             //--------------- 텍스트 박스 추가 ------------------------------
             ht = new Hashtable();
             ht.Add("width", 200);
@@ -96,6 +106,14 @@ namespace VCS_winform.Views
             ht.Add("font", new Font("맑은 고딕", 13, FontStyle.Regular));
             addr_tb = common.GetTextBoxf(ht, parentForm);
             addr_tb.Enabled = false;
+
+            ht = new Hashtable();
+            ht.Add("width", 200);
+            ht.Add("point", new Point(570, 360));
+            ht.Add("name", "time_tb");
+            ht.Add("font", new Font("맑은 고딕", 13, FontStyle.Regular));
+            time_tb = common.GetTextBoxf(ht, parentForm);
+            time_tb.Text = "0";
 
             //------------------ 이미지 픽쳐박스 추가 ----------------------------
             ht = new Hashtable();
@@ -167,6 +185,7 @@ namespace VCS_winform.Views
             ht = new Hashtable();
             ht.Add("ono", oNo);
             ht.Add("mno", Program.userInfo.MNo);
+            ht.Add("time", time_tb.Text);
             string result = api.Post(Program.serverUrl + "api/certificationok", ht);
             if (result == "1")
                 MessageBox.Show("인증완료..!!");
