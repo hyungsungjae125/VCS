@@ -94,7 +94,8 @@ namespace HSJ.Controllers
         public ArrayList GetNoticeList2()
         {
             Database db = new Database();
-            ArrayList result = db.GetList("sp_SelectNoticeList2");
+            Hashtable ht = new Hashtable();
+            ArrayList result = db.GetList("sp_SelectVolunteerList2",ht);
             db.Close();
             return result;
         }

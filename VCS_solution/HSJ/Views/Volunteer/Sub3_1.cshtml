@@ -4,34 +4,55 @@
 }
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<link rel="stylesheet" href="~/css/Other/Notice.css" />
-<script type="text/javascript" src="~/js/Other/Notice.js"></script>
-
+<link rel="stylesheet" href="~/css/Volunteer/Volunteer.css" />
+<script type="text/javascript" src="~/js/Volunteer/Volunteer.js"></script>
+<style>
+    .cursor {
+        background-color: sienna;
+    }
+</style>
 <h1 style="margin-left:30px;">모집중인 봉사</h1>
 <hr style=""/>
 
 <div id="contents">
     <div class="noticelist" data-ng-app="myApp" data-ng-controller="noticelist">
         <br>
-        <input type="text" class="filter" placeholder="검색하세요." data-ng-model="filter.title">
-        <ul class="head">
-            <li>
-                <div>번호</div>
-                <div>제목</div>
-                <div>기관명</div>
-                <div>요일</div>
-                <div>시간</div>
-            </li>
-        </ul>
-        <ul class="list">
-            <li data-ng-repeat="`    in data | filter:filter">
-                <div class="text_center">{{row.vNo}}</div>
-                <div>{{row.vName}}</div>
-                <div>{{row.aName}}</div>
-                <div>{{row.vWeek}}</div>
-                <div>{{row.vTime}}</div>
-                <div><button type="button" data-ng-click="btn(row, $index)">{{row.vName}}</button></div>
-            </li>
-        </ul>
+        <!-- type="text" class="filter" placeholder="검색하세요." data-ng-model="filter.title"-->
+        <div style="min-height: 340px;">
+            <ul class="head">
+                <li>
+                    <div>번호</div>
+                    <div>제목</div>
+                    <div>기관명</div>
+                    <div>요일</div>
+                    <div>시간</div>
+                </li>
+            </ul>
+            <ul class="list">
+                <li data-ng-repeat="row in data | filter:filter | startFrom:currentPage*pageSize | limitTo:pageSize" data-ng-click="list(row.vNo)">
+                    <div class="text_center">{{row.vNo}}</div>
+                    <div>{{row.vName}}</div>
+                    <div>{{row.aName}}</div>
+                    <div>{{row.vWeek}}</div>
+                    <div>{{row.vTime}}</div>
+                    <!--div><button type="button" data-ng-click="btn(row, $index)">{{row.vName}}</button></!--div>-->
+                </li>
+            </ul>
+        </div>
+        <div style="text-align:center;">
+            <!--
+    <button data-ng-click="btn(0)" data-ng-hide="currentPage == 0">
+        Previous
+    </button>
+        -->
+            <ul style="list-style:none; display:inline-block;">
+                <li data-ng-repeat="row in pageList" data-ng-click="page(row)" style="display:inline-block; padding: 5px 10px; margin: 0 5px; cursor:pointer; border-radius: 50%;" data-ng-class="{cursor : row.no == (currentPage + 1)}">{{row.no}}</li>
+            </ul>
+            <!--
+    <button data-ng-click="btn(1)" data-ng-hide="currentPage == (numberOfPage - 1)">
+        Next
+    </button>
+        -->
+        </div>
     </div>
 </div>

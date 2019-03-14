@@ -182,12 +182,25 @@ namespace HSJ.Controllers
         [Route("api/applylistdetail")]
         [EnableCors("AllowOrigin")]
         [HttpPost]
-        public ArrayList GetApplyListDetail([FromForm] string vno)
+        public ArrayList GetVolunteerListDetail([FromForm] string vno)
         {
             Database db = new Database();
             Hashtable param = new Hashtable();
             param.Add("@vNo", vno);
             ArrayList result = db.GetList("sp_SelectVolunteerListDetail", param);
+            db.Close();
+            return result;
+        }
+
+        [Route("api/volunteerdetail")]
+        [EnableCors("AllowOrigin")]
+        [HttpPost]
+        public ArrayList GetVolunteerDetail([FromForm] string vno)
+        {
+            Database db = new Database();
+            Hashtable param = new Hashtable();
+            param.Add("@vNo", vno);
+            ArrayList result = db.GetList("sp_SelectVolunteerDetail", param);
             db.Close();
             return result;
         }
