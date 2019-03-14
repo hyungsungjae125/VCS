@@ -1,7 +1,9 @@
 ﻿@{
-    
+
 }
 <link rel="stylesheet" href="~/css/Home/index.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="~/js/Home/index.js"></script>
 <div id="search">
     <ul style="list-style: none;">
         <li><a>봉사 조회</a></li>
@@ -15,18 +17,27 @@
         <input type="text" name="id" placeholder="아이디" autocomplete="off" required>
         <input type="password" name="password" placeholder="비밀번호" autocomplete="off" required>
         <button type="submit" name="login" id="loginbtn">로그인</button>
-        <button type="submit" name="join" class="btn2" id="join">회원가입</button>
-        <button type="submit" name="idpw" class="btn2">ID/PW찾기</button>
+
     </form>
+    <button type="submit" name="join" class="btn2" id="signup">회원가입</button>
+    <button type="submit" name="idpw" class="btn2" id="idpw">ID/PW찾기</button>
 </div>
 <div id="notice">
     <ul style="list-style: none;">
         <li>
             <div style="float: left;width: 70%">&nbsp;공지 사항</div>
-            <div style="float: left;width: 30%;text-align: right"><a href="#" style="font-size: 20px;">+&nbsp;</a></div>
+            <div style="float: left;width: 30%;text-align: right"><a href="/Other/Notice" style="font-size: 20px;text-decoration: none;">+&nbsp;</a></div>
             <hr style="border: 1px solid red">
         </li>
-        <li>모집중인 봉사</li>
-        <li>질문과 답변</li>
+        <li>
+            <div style="float: left;width: 70%">&nbsp;모집중인 봉사</div>
+            <div style="float: left;width: 30%;text-align: right"><a href="/Volunteer/Sub3_1" style="font-size: 20px;text-decoration: none;">+&nbsp;</a></div>
+            <hr style="border: 1px solid red">
+        </li>
+        <li>
+            <div style="float: left;width: 70%">&nbsp;질문과 답변</div>
+            <div style="float: left;width: 30%;text-align: right"><a href="/Other/Question" style="font-size: 20px;text-decoration: none;">+&nbsp;</a></div>
+            <hr style="border: 1px solid red">
+        </li>
     </ul>
 </div>

@@ -18,7 +18,7 @@
 
 #contents input[type=text], input[type=password] {
     width: 150px;
-    height: 10%;
+    height: 30px;
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 2vh;
@@ -31,7 +31,7 @@
 
 #contents button[type=submit] {
     width: 150px;
-    height: 10%;
+    height: 30px;
     margin-left: 10%;
     margin-top: 2vh;
     cursor: pointer;

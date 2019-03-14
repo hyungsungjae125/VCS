@@ -1,0 +1,24 @@
+﻿body {
+}
+
+#signupform {
+    margin: auto;
+    /*    margin-top: calc(50vh - 300px);
+    
+    position:absolute;
+    top:230px;*/
+    left: calc(50vw - 250px);
+    width: 500px;
+    height: 700px;
+}
+
+.log {
+    margin-left: calc(50% - 150px);
+    height: 30px;
+    width: 300px;
+    margin-top: 20px;
+}
+
+#id {
+    margin-top: 100px;
+}

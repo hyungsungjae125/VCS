@@ -1,0 +1,37 @@
+﻿
+@{
+
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link rel="stylesheet" href="~/css/Other/Notice.css" />
+<script type="text/javascript" src="~/js/Other/Notice.js"></script>
+
+<h1 style="margin-left:30px;">모집중인 봉사</h1>
+<hr style=""/>
+
+<div id="contents">
+    <div class="noticelist" data-ng-app="myApp" data-ng-controller="noticelist">
+        <br>
+        <input type="text" class="filter" placeholder="검색하세요." data-ng-model="filter.title">
+        <ul class="head">
+            <li>
+                <div>번호</div>
+                <div>제목</div>
+                <div>기관명</div>
+                <div>요일</div>
+                <div>시간</div>
+            </li>
+        </ul>
+        <ul class="list">
+            <li data-ng-repeat="`    in data | filter:filter">
+                <div class="text_center">{{row.vNo}}</div>
+                <div>{{row.vName}}</div>
+                <div>{{row.aName}}</div>
+                <div>{{row.vWeek}}</div>
+                <div>{{row.vTime}}</div>
+                <div><button type="button" data-ng-click="btn(row, $index)">{{row.vName}}</button></div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -20,7 +20,7 @@ h1,h2,h3,h4,h5,h6,p,ul {
 
 #contents {
     background-color: beige;
-    min-height: calc(100vh - 130px);
+    height: 1000px;
 }
 
 #header #logo {
@@ -32,6 +32,11 @@ h1,h2,h3,h4,h5,h6,p,ul {
     width: 30vw;
     height: 100%;
     float: right;
+}
+
+#header #right #logout{
+    float:right;
+    margin:10px;
 }
 
 #nav {
@@ -133,8 +138,8 @@ h1,h2,h3,h4,h5,h6,p,ul {
 #search li {
     background: beige;
     float: left;
-    width: calc(100% / 2);
-    height: 50%;
+    width: 25%;
+    height: 100%;
     border: 1px solid black;
     box-sizing: border-box;
 }
@@ -149,7 +154,7 @@ h1,h2,h3,h4,h5,h6,p,ul {
     margin: 10px;
     background: beige;
     float: left;
-    width: calc(100% / 3 - 20px);
+    width: 300px;
     height: calc(100% - 20px);
 }
 
@@ -161,12 +166,28 @@ h1,h2,h3,h4,h5,h6,p,ul {
     margin-right: 10%;
 }
 
-#contetns {
-    height: 100vh;
-}
-
 @media screen and (max-width: 550px) {
     #nav li {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    #search li {
+        
+        width: 50%;
+        height: 50%;
+        border: 1px solid black;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (max-width: 1020px) {
+    #notice li {
+        margin: 10px;
+        background: beige;
+        float: left;
+        width: 100%;
+        height: calc(100% / 3 - 20px);
     }
 }
