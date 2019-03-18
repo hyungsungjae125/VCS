@@ -204,5 +204,20 @@ namespace HSJ.Controllers
             db.Close();
             return result;
         }
+
+        [Route("api/applyinsert")]
+        [EnableCors("AllowOrigin")]
+        [HttpPost]
+        public int ApplyInsert([FromForm] int vno, [FromForm] int mno)
+        {
+            Database db = new Database();
+            Hashtable param = new Hashtable();
+            param.Add("@vNo", vno);
+            param.Add("@mNo", mno);
+            int result = db.NonQuery("sp_InsertApply", param);
+            db.Close();
+            Console.WriteLine("###result---->"+result);
+            return result;
+        }
     }
 }
