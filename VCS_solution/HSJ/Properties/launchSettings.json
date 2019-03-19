@@ -18,7 +18,7 @@
     "HSJ": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "/Home/index.cshtml",
+      "launchUrl": "http://gdc3.gudi.kr:50001/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

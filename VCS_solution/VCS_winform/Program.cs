@@ -19,8 +19,8 @@ namespace VCS_winform
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
         }
-        //static public string serverUrl = "http://localhost:51259/"; 
-        static public string serverUrl = "http://192.168.3.19/";
+        
+        static public string serverUrl = "http://gdc3.gudi.kr:50001/";
         static public UserInfo userInfo=null;
     }
 }
