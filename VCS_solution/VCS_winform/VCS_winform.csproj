@@ -23,13 +23,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://vcs.koreasouth.cloudapp.azure.com/</InstallUrl>
+    <InstallUrl>http://gdc3.gudi.kr:50001/</InstallUrl>
     <ProductName>VCS_ADMIN</ProductName>
     <PublisherName>HSJ</PublisherName>
     <SuiteName>VolunteerCertification</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>download.html</WebPage>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
