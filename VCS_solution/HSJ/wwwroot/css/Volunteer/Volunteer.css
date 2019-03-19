@@ -53,6 +53,8 @@
 
 .list li {
     height: 60px;
+    cursor:pointer;
+    border-bottom:1px solid lightgray;
 }
 
     .head li div, .list li div {

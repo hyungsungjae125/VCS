@@ -1,7 +1,7 @@
 ﻿var list = angular.module("myApp", []);
 list.controller("noticelist", function ($scope, $http) {
 	$scope.currentPage = 0;
-	$scope.pageSize = 5;
+	$scope.pageSize = 10;
 	$scope.data = [];
 	$scope.pageList = [];
 	$scope.numberOfPage = 3;
