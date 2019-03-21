@@ -393,7 +393,7 @@ namespace VCS_winform.Views
             ht.Add("vobject", object_combo.Text);
             ht.Add("count", weekcount);
             string result = api.Post(Program.serverUrl + "api/volunteerlistinsert", ht);
-            MessageBox.Show(result);
+            //MessageBox.Show(result);
             parentForm.Close();
         }
     }
